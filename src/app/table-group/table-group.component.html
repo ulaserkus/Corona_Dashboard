@@ -1,0 +1,59 @@
+<style>
+    input.empty {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
+</style>
+
+<div class="card p-1">
+
+    <div class="input-group">
+        <input type="text"  class="form-control empty mr-1" placeholder="&#xF002; Ülke Ara" [(ngModel)]="searchTerm">
+
+        <select #t (change)="sort(t.value)" style="width: 100px; font-family: FontAwesome;">
+            <option value="0" disabled selected>&#xf0dc; Sırala</option>
+            <option value="1">Ülke</option>
+            <option value="2">Vaka</option>
+            <option value="3">Ölüm</option>
+            <option value="4">İyileşme</option>
+            
+        </select>
+
+    </div>
+
+    <table class="table   ml-3  table-borderless">
+        <thead>
+            <tr>
+
+                <th>Ülke</th>
+                <th>Vaka</th>
+                <th>Ölüm</th>
+                <th>İyileşme</th>
+
+            </tr>
+        </thead>
+    </table>
+</div>
+<div class="card mt-1 pl-3 pr-3 " style="height: 300px; overflow-y: auto; overflow-x:hidden;">
+
+    <table class="table table-sm small">
+
+        <tbody>
+            <tr *ngFor="let country of countries | countryFilter:searchTerm">
+
+                <td>{{country.countryName}}</td>
+                <td class="text-danger  ">{{country.patient}}</td>
+                <td class="text-secondary ">{{country.death}}</td>
+                <td class="text-success ">{{country.cure}}</td>
+            </tr>
+
+        </tbody>
+
+    </table>
+
+
+
+
+</div>

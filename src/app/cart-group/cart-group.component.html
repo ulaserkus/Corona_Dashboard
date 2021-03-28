@@ -1,0 +1,51 @@
+<div class="input-group">
+
+
+  <div class="input-group-prepend">
+    <h6>Dünya Geneli Toplam Vaka Sayısı</h6>
+  </div>
+  <button type="button" routerLink="/login"   class="btn btn-dark ml-auto btn-sm">Login</button>
+
+  <select [(ngModel)]="selectedObject" class="btn-light" #t (change)="callType(t.value)">
+    <option value="/">Dünya Geneli</option>
+    <option *ngFor="let country of countries">{{country.countryName}}</option>
+  </select>
+
+
+
+</div>
+
+
+<div class="card text-center p-3" style="width: 25%; display: inline-block; ">
+
+  <p class="small">Toplam Vaka Sayısı</p>
+  <p class="text-danger">{{cart?.total}}</p>
+
+  <span class="alert alert-danger small font-weight-bold">+{{changedValues?.total}}</span>
+
+
+
+</div>
+<div class="card text-center p-3" style="width: 25%; display: inline-block;">
+
+  <p class="small">Ölüm Vakaları</p>
+  <p class="text-secondary">{{cart?.totalDeaths}}</p>
+  <span class="alert alert-secondary small font-weight-bold">+{{changedValues?.totalDeaths}}</span>
+
+</div>
+<div class="card text-center p-3" style="width: 25%; display: inline-block;">
+
+
+  <p class="small">Aktif Vakalar</p>
+  <p class="text-warning">{{cart?.totalPatient}}</p>
+  <span class="alert alert-warning  small font-weight-bold">+{{changedValues?.totalPatient}}</span>
+
+</div>
+<div class="card text-center p-3" style="width: 25%; display: inline-block;">
+
+
+  <p class="small">Tedavi Edilen Vakalar</p>
+  <p class="text-success">{{cart?.totalCure}}</p>
+  <span class="alert alert-success small font-weight-bold">+{{changedValues?.totalCure}}</span>
+
+</div>

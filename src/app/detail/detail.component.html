@@ -1,0 +1,88 @@
+<div class="row">
+
+    <div class="col-md-12 mt-1">
+        <div class="row">
+            <div class="col-md-9">
+                <h4><strong>Ülke Detay</strong></h4>
+            </div>
+            <div class="col-md-3">
+                <div class="input-group">
+                    <button class="btn btn-dark mr-2 " (click)="logOut()" >Log Out</button>
+                    <button class="btn btn-dark" (click)="admin()">Admin Panel</button>
+                </div>
+               
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <strong>Kayıt Ekle</strong>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <form [formGroup]="addDetailsForm"  class="form-group" method="POST">
+
+                            <my-date-picker formControlName="addedTime" class="mt-2" name="mydate" [options]="myDatePickerOptions"
+                                style="width: 250px;"
+                                required>
+                            </my-date-picker>
+                            
+                            
+                            <span class="alert alert-danger d-block" *ngIf="addDetailsForm.controls['addedTime'].touched&&addDetailsForm.controls['addedTime'].hasError('required')">zorunlu alan</span>
+                           
+                            <input formControlName="death" class="form-control mt-1" type="number" placeholder="Ölüm Sayısı">
+                            <span class="alert alert-danger d-block" *ngIf="addDetailsForm.controls['death'].touched&&addDetailsForm.controls['death'].hasError('required')">zorunlu alan</span>
+    
+                            <input formControlName="patient" class="form-control mt-1" type="number" placeholder="Vaka Sayısı">
+                            <span class="alert alert-danger d-block" *ngIf="addDetailsForm.controls['patient'].touched&&addDetailsForm.controls['patient'].hasError('required')">zorunlu alan</span>
+
+                            <input formControlName="cure" class="form-control  mt-1" type="number" placeholder="İyileşen Sayısı">
+                            <span class="alert alert-danger d-block" *ngIf="addDetailsForm.controls['cure'].touched&&addDetailsForm.controls['cure'].hasError('required')">zorunlu alan</span>
+                            
+                               
+
+                            <button [disabled]="!addDetailsForm.valid" type="submit" (click)="postData()"  class="btn btn-secondary btn-block mt-2">Kaydet</button>
+
+
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="card" style="position: relative ;top: 1%; height: 300px; overflow-y: auto;">
+            <div class="card-header">
+                <strong>Detay Listesi</strong>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Tarih</th>
+                            <th>Vaka</th>
+                            <th>Ölüm</th>
+                            <th>İyileşme</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let detail of details">
+                            <td>{{detail?.addedTime}}</td>
+                            <td>{{detail?.patient}}</td>
+                            <td>{{detail?.death}}</td>
+                            <td>{{detail?.cure}}</td>
+                            <td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
